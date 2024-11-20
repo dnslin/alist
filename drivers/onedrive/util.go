@@ -128,7 +128,7 @@ func (d *Onedrive) Request(url string, method string, callback base.ReqCallback,
 func (d *Onedrive) getFiles(path string) ([]File, error) {
 	var res []File
 	// 减小每页数量,默认使用100个文件每页
-	nextLink := d.GetMetaUrl(false, path) + "/children?$top=500&$expand=thumbnails($select=medium)&$select=id,name,size,fileSystemInfo,content.downloadUrl,file,parentReference"
+	nextLink := d.GetMetaUrl(false, path) + "/children?$top=200&$expand=thumbnails($select=medium)&$select=id,name,size,fileSystemInfo,content.downloadUrl,file,parentReference"
 	for nextLink != "" {
 		var files Files
 		_, err := d.Request(nextLink, http.MethodGet, nil, &files)
